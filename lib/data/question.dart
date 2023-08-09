@@ -2,30 +2,39 @@ import 'package:adv_basics/models/quiz_question.dart';
 
 const questions = [
   QuizQuestion(
-    'What are the main building blocks of Flutter?',
+    'What is HTML?',
     [
-      'Widgets',
-      'Classes',
-      'Methods',
-      'Functions',
+      'HTML is the standard markup language mainly used to create web pages.',
+      'HTML describes the structure of a webpage.',
+      'HTML consists of a set of elements that helps the browser how to view the content.',
+      'All of the mentioned.',
     ],
   ),
   QuizQuestion(
-    'What are the main building blocks of Flutter 2?',
+    'Who is the father of HTML?',
     [
-      'Widgets',
-      'Classes',
-      'Methods',
-      'Functions',
+      'Tim Berners-Lee.',
+      'Rasmus Lerdorf.',
+      'Brendan Eich.',
+      'Sergey Brin.',
     ],
   ),
   QuizQuestion(
-    'What are the main building blocks of Flutter 3?',
+    'HTML stands for __________?',
     [
-      'Widgets',
-      'Classes',
-      'Methods',
-      'Functions',
+      'HyperText Markup Language.',
+      'HyperText Machine Language.',
+      'HyperText Marking Language.',
+      'HighText Marking Language.',
+    ],
+  ),
+  QuizQuestion(
+    'What is the correct syntax of doctype in HTML5',
+    [
+      '<!doctype html>',
+      '</doctype html>',
+      '<doctype html>',
+      '<doctype html!>',
     ],
   ),
 ];

@@ -7,24 +7,49 @@ class QuestionSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: sammaryData.map(
-        (data) {
-          return Row(
-            children: [
-              Text(((data["question_index"] as int) + 1).toString()),
-              Column(
+    return SizedBox(
+      height: 200,
+      child: SingleChildScrollView(
+        child: Column(
+          children: sammaryData.map(
+            (data) {
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(data["question"] as String),
-                  Text(data["answer"] as String),
-                  Text(data["correct_answer"] as String),
-                  Text(data["isCorrect"] as bool ? "Correct" : "Wrong"),
+                  Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    child: Text(
+                      ((data["question_index"] as int) + 1).toString(),
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(data["question"] as String),
+                        Text(
+                          'Ans = ' + (data["answer"] as String),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: data["isCorrect"] as bool
+                                  ? Color.fromARGB(255, 226, 215, 14)
+                                  : Colors.red),
+                        ),
+                        Text(
+                          'Correct = ' + (data["correct_answer"] as String),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
-              )
-            ],
-          );
-        },
-      ).toList(),
+              );
+            },
+          ).toList(),
+        ),
+      ),
     );
   }
 }

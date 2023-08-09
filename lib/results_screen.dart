@@ -1,11 +1,14 @@
 import 'package:adv_basics/data/question.dart';
 import 'package:adv_basics/question_summary.dart';
+import 'package:adv_basics/quiz.dart';
 import 'package:flutter/material.dart';
 
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({super.key, required this.chosenAnswer});
+  const ResultsScreen(
+      {super.key, required this.chosenAnswer, required this.backToHome});
 
   final List<String> chosenAnswer;
+  final void Function() backToHome;
 
   List<Map<String, Object>> getSammaryData() {
     final List<Map<String, Object>> sammary = [];
@@ -25,9 +28,13 @@ class ResultsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var numberOfQuestion = getSammaryData().length;
-    final numberOfCorrectAnswer = getSammaryData().where((data) {
-      return data['answer'] == data['correct_answer'];
-    }).length;
+    // final numberOfCorrectAnswer = getSammaryData().where((data) {
+    //   return data['answer'] == data['correct_answer'];
+    // }).length;
+
+    final numberOfCorrectAnswer = getSammaryData()
+        .where((data) => data['answer'] == data['correct_answer'])
+        .length;
 
     return SizedBox(
       width: double.infinity,
@@ -37,15 +44,17 @@ class ResultsScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Your answer $numberOfCorrectAnswer out of $numberOfQuestion question correct",
+              "Your correct answer $numberOfCorrectAnswer out of $numberOfQuestion question",
               style: const TextStyle(color: Colors.white),
+              textAlign: TextAlign.right,
             ),
             const SizedBox(height: 20),
             QuestionSummary(getSammaryData()),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text("Restart Quiz"),
+            ElevatedButton.icon(
+              onPressed: backToHome,
+              icon: const Icon(Icons.arrow_back),
+              label: const Text("Back to Home"),
             ),
           ],
         ),
