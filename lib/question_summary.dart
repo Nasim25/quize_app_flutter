@@ -27,16 +27,40 @@ class QuestionSummary extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(data["question"] as String),
-                        Text(
-                          'Ans = ' + (data["answer"] as String),
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                        RichText(
+                          text: TextSpan(
+                            style: TextStyle(
                               color: data["isCorrect"] as bool
-                                  ? Color.fromARGB(255, 226, 215, 14)
-                                  : Colors.red),
+                                  ? Colors.yellow
+                                  : Colors.red,
+                            ),
+                            children: [
+                              const TextSpan(
+                                text: 'Your Ans = ',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 79, 4, 219),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              TextSpan(
+                                text: (data["answer"] as String),
+                              ),
+                            ],
+                          ),
                         ),
-                        Text(
-                          'Correct = ' + (data["correct_answer"] as String),
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              if (!(data["isCorrect"] as bool))
+                                TextSpan(
+                                  text:
+                                      'Correct Ans = ${data["correct_answer"] as String}',
+                                  style: const TextStyle(
+                                    color: Color.fromARGB(255, 79, 4, 219),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                            ],
+                          ),
                         ),
                         const SizedBox(
                           height: 10,
